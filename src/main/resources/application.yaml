@@ -1,0 +1,14 @@
+#message.text=Hi. How are u?
+#client.name=Ilya
+#
+#server.port=8090
+#spring.mvc.hiddenmethod.filter.enabled=true
+
+server:
+  port: 8090
+
+message:
+  text: Hi. How are u?
+
+client:
+  name: Ilya

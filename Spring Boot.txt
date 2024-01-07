@@ -1,0 +1,78 @@
+    1. Что такое CRUD? - это аббревиатуры:
+create - команда insert (hhtp - post), read - команда select (hhtp - get), update - команда update (hhtp - put), delete - команда delete (hhtp - delete)
+
+    2. Что такое CRUD-приложение? - это приложение в котором выражаются четыре операции CRUD
+для управления данными в системе. 
+
+    3. Требуется endpoint для отображения информации о конкретном клиенте. Как будет выглядеть URL для данного endpoint? С помощью чего легче описать данный endpoint?
+
+Описывать легче всего с помощью controller и html страницы, URL 
+GetMapping("/clients/{id}")
+ public String getClientById(@PathVariable Integer clientId, Model model) {
+        Client clientById = clientService.getClientById(clientId);
+        model.addAttribute("clients", List.of(id));
+        return "client/clients";
+    }
+
+    4. Необходимо передать на сервер набор некоторых значений для получения некоторой информации. Как это будет реализовано в контроллере?
+ @GetMapping("/clients/aggregate-result")
+    public String paramForClient(@RequestParam Param param, Model model) {
+        List<param> clients = clientService.paramForClient(param);
+        model.addAttribute("clients", clients);
+        return "client/param_clients";
+    }
+
+
+    5. Необходимо передать на сервер запрос на регистрацию пользователя. Как это будет реализовано в контроллере?
+
+ @GetMapping("/clients/new")
+    public String createNewClient(Model model) {
+        model.addAttribute("client", new Client());
+        return "client/new_client";
+    }
+
+  @PostMapping("/clients")
+    public String createNewClient(@ModelAttribute Client client) {
+        clientService.saveClient(client);
+        return "redirect:/clients";
+    }
+
+    6. Для чего нужна аннотация @SpringBootApplication?
+
+Аннотация @SpringBootApplication объединяет в себе другие аннотации такие как: @Configuration, @EnableAutoConfiguration,EnableAutoConfiguration, необходимые для автоконфигурации проекта.
+Таким образом, использование @SpringBootApplication позволяет сократить объем кода и конфигурации, необходимый для настройки Spring приложения.
+
+    7. Будет ли работать Spring приложение без @SpringBootApplication?
+
+Spring приложение будет рабоать без @SpringBootApplication, но тогда нам самим вручную нужно добавить аннотации включающие в @SpringBootApplication.
+
+    8. Что такое автоконфигурация и стартер?
+
+Автоконфигурация – автоматическое создание и настройка бинов, необходимых для работы приложения пример @SpringBootApplication.
+Starter – набор зависимостей (библиотек), которые подключаются к проекту. Облегчают настройку приложения – для работы необходимо подключить нужные стартеры, в которых уже будут все необходимые зависимости (не нужно по отдельности добавлять каждую зависимость). 
+
+    9. Почему не нужно настраивать веб и Tomcat в Spring Boot?
+
+Spring Boot обеспечивает автоматическую конфигурацию многих аспектов приложения, включая веб-приложение и встроенный сервер приложений, такой как Tomcat.
+Spring boot имеет автоконфигурацию для всех стартеров, необходимо в poom.xml внедрить зависимость spring-boot-starter-web и Tomcat автоматически настроиться.
+
+    10. Какие основные преимущества Spring Boot перед обычным Spring приложением?
+Основные преимущества Spring Boot перед обычным Spring приложением:
+Автоматическая конфигурация приложения.
+Управление зависимостями с помощью стартеров.
+
+    11. Требуется добавить в проект зависимость JPA. Как правильно это сделать в Spring Boot?
+Необходимо в файл pom.xml добавить зависимость + starter:
+<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    12. Требуется добавить в проект специфическую библиотеку. Как правильно это сделать в Spring Boot?
+
+Необходимо в файл pom.xml добавить зависимость 
+<dependency>
+        <groupId>groupId</groupId>
+        <artifactId>artifactId</artifactId>
+        <version>версия</version>
+    </dependency>
