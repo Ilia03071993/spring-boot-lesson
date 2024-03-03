@@ -1,21 +1,21 @@
 package com.example.springbootlesson.controller;
 
-import com.example.springbootlesson.model.CreatorClientMessage;
+import com.example.springbootlesson.service.CreatorClientMessage;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("/message")
 public class MessageController {
     private final CreatorClientMessage creatorClientMessage;
 
-    @Autowired
-    public MessageController(CreatorClientMessage creatorClientMessage) {
-        this.creatorClientMessage = creatorClientMessage;
-    }
-
-
-    @GetMapping("/message")
+    @ResponseBody
+    @GetMapping
     public String getMessage() {
         return creatorClientMessage.creteMessage().toString();
     }

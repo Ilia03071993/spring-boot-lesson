@@ -4,11 +4,27 @@
 #server.port=8090
 #spring.mvc.hiddenmethod.filter.enabled=true
 
-server:
-  port: 8090
-
+#server:
+#  port: 8090
+#
 message:
   text: Hi. How are u?
 
 client:
   name: Ilya
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+#        dialect: org.hibernate.dialect.MySQLDialect
